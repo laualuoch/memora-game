@@ -1,6 +1,14 @@
 import card from './images/card.svg';
 import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import { useState } from 'react';
+
+
+const Card = ( {onClick}) => {
+  return (
+    <img src={card} class="btn img-fluid" alt="Card One"></img>
+  )
+}
 
 const FlipCardGame = () => {
   return (
@@ -15,37 +23,37 @@ const FlipCardGame = () => {
         <div class="container">
           <div class="row">
             <div class="col">
-              <img src={card} class="img-fluid" alt="Card One"></img>
+              <Card />
             </div>
             <div class="col">
-              <img src={card} class="img-fluid" alt="Card Two"></img>
+              <Card />
             </div>
             <div class="col">
-              <img src={card} class="img-fluid" alt="Card Three"></img>
+              <Card />
             </div>
             <div class="col">
-              <img src={card} class="img-fluid" alt="Card Four"></img>
+              <Card />
             </div>
             <div class="col">
-              <img src={card} class="img-fluid" alt="Card Five"></img>
+              <Card />
             </div>
           </div>
 
           <div class="row">
             <div class="col">
-              <img src={card} class="img-fluid" alt="Card Ten"></img>
+              <Card />
             </div>
             <div class="col">
-              <img src={card} class="img-fluid" alt="Card Nine"></img>
+              <Card />
             </div>
             <div class="col">
-              <img src={card} class="img-fluid" alt="Card Eight"></img>
+              <Card />
             </div>
             <div class="col">
-              <img src={card} class="img-fluid" alt="Card Seven"></img>
+              <Card />
             </div>
             <div class="col">
-              <img src={card} class="img-fluid" alt="Card Six"></img>
+              <Card />
             </div>
           </div>
         </div>
@@ -70,6 +78,9 @@ const GameManager = () => {
     </>
   )
 }
+
+//moves, allowed moves,
+//rounds played, and accuracy (optional but for extra points).
 
 
 const Button = ({task},{clickAction}) => {
