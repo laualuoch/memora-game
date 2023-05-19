@@ -29,9 +29,7 @@ function App() {
               <img src={card} class="img-fluid" alt="Card Five"></img>
             </div>
           </div>
-        </div>
 
-        <div class="container">
           <div class="row">
             <div class="col">
               <img src={card} class="img-fluid" alt="Card Ten"></img>
@@ -48,6 +46,14 @@ function App() {
             <div class="col">
               <img src={card} class="img-fluid" alt="Card Six"></img>
             </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="row">
+              <div class="col">
+                <button type="button" class="btn btn-outline-warning">Replay</button>
+              </div>
           </div>
         </div>
       </body>
