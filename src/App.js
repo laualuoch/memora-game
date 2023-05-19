@@ -2,27 +2,21 @@ import card from './images/card.svg';
 import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { useState } from 'react';
-
-
-const Card = ( {onClick}) => {
-  return (
-    <img src={card} class="btn img-fluid" alt="Card One"></img>
-  )
-}
+import { Row, Col } from 'react-bootstrap';
 
 const FlipCardGame = () => {
 
   const [cards, setCards] = useState ([
-    { id: 1, value: 'bee-cap', flipped: false, matched: false },
-    { id: 2, value: 'bee-romper', flipped: false, matched: false },
-    { id: 3, value: 'bee-skirt', flipped: false, matched: false },
-    { id: 4, value: 'bee-shoes', flipped: false, matched: false },
-    { id: 5, value: 'bee-shirt', flipped: false, matched: false },
-    { id: 6, value: 'bee-cap', flipped: false, matched: false },
-    { id: 7, value: 'bee-romper', flipped: false, matched: false },
-    { id: 8, value: 'bee-skirt', flipped: false, matched: false },
-    { id: 9, value: 'bee-shoes', flipped: false, matched: false },
-    { id: 10, value: 'bee-shirt', flipped: false, matched: false },
+    { id: 1, value: 'bee-cap', flipped: false, matched: false, defaultImage: {card}},
+    { id: 2, value: 'bee-romper', flipped: false, matched: false, defaultImage: {card }},
+    { id: 3, value: 'bee-skirt', flipped: false, matched: false, defaultImage: {card }},
+    { id: 4, value: 'bee-shoes', flipped: false, matched: false, defaultImage: {card}},
+    { id: 5, value: 'bee-shirt', flipped: false, matched: false,defaultImage: {card }},
+    { id: 6, value: 'bee-cap', flipped: false, matched: false, defaultImage: {card} },
+    { id: 7, value: 'bee-romper', flipped: false, matched: false, defaultImage: {card}},
+    { id: 8, value: 'bee-skirt', flipped: false, matched: false, defaultImage: {card}},
+    { id: 9, value: 'bee-shoes', flipped: false, matched: false, defaultImage: {card}},
+    { id: 10, value: 'bee-shirt', flipped: false, matched: false, defaultImage: {card}},
   ]);
 
   return (
@@ -35,41 +29,7 @@ const FlipCardGame = () => {
       </header>
       <body className="App-body">
         <div class="container">
-          <div class="row">
-            <div class="col">
-              <Card />
-            </div>
-            <div class="col">
-              <Card />
-            </div>
-            <div class="col">
-              <Card />
-            </div>
-            <div class="col">
-              <Card />
-            </div>
-            <div class="col">
-              <Card />
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col">
-              <Card />
-            </div>
-            <div class="col">
-              <Card />
-            </div>
-            <div class="col">
-              <Card />
-            </div>
-            <div class="col">
-              <Card />
-            </div>
-            <div class="col">
-              <Card />
-            </div>
-          </div>
+          <DisplayCards />
         </div>
 
 
@@ -95,10 +55,6 @@ const GameManager = () => {
   )
 }
 
-//moves, allowed moves,
-//rounds played, and accuracy (optional but for extra points).
-
-
 const Button = ({countItem},{clickAction}) => {
   return (
     <button 
@@ -114,6 +70,28 @@ const Display = ({countItem}, {count}) => {
   return (
     <div>
       <h6>{countItem}: {count}</h6>
+    </div>
+  )
+}
+
+const Card = ( {onClick}) => {
+  return (
+    <img src={card} class="btn img-fluid" alt="Card One"></img>
+  )
+}
+
+const DisplayCards = () => {
+  return (
+    <div>
+      {[0, 1].map((row) => (
+        <Row key={row}>
+          {[0, 1, 2, 3, 4].map((col) => (
+            <Col key={col}>
+              <Card />
+            </Col>
+          ))}
+        </Row>
+      ))}
     </div>
   )
 }
