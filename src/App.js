@@ -74,6 +74,7 @@ const FlipCardGame = () => {
 
 
         <div class = "container">
+          <h4>Game Stats</h4>
           <GameManager />
         </div>
       </body>
@@ -85,9 +86,10 @@ const FlipCardGame = () => {
 const GameManager = () => {
   return (
     <>
-    <Display task = "Moves" clickAction = {clickStat}/>
-    <Display />
-    <Display />
+    <Display countItem = "Moves"/>
+    <Display countItem = "Allowed Moves"/>
+    <Display countItem = "Rounds Played"/>
+    <Display countItem = "Accuracy"/>
     <Button />
     </>
   )
@@ -97,22 +99,22 @@ const GameManager = () => {
 //rounds played, and accuracy (optional but for extra points).
 
 
-const Button = ({task},{clickAction}) => {
+const Button = ({countItem},{clickAction}) => {
   return (
     <button 
     type="button" 
     class="btn btn-outline-warning" 
-    onClick = {{clickAction}}>
-     {task}
+    onClick = {{clickAction}} >
+     Replay
     </button>
   )
 }
 
-const Display = ({item}, {count}) => {
+const Display = ({countItem}, {count}) => {
   return (
-    <pre>
-      {item}: {count}
-    </pre>
+    <div>
+      <h6>{countItem}: {count}</h6>
+    </div>
   )
 }
 
