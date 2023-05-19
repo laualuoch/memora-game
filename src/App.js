@@ -52,13 +52,34 @@ function App() {
         <div class="container">
           <div class="row">
               <div class="col">
-                <button type="button" class="btn btn-outline-warning">Replay</button>
+                
               </div>
           </div>
         </div>
       </body>
     </div>
   );
+}
+
+
+const Button = () => {
+  return (
+    <button 
+    type="button" 
+    class="btn btn-outline-warning" 
+    onClick = {() => 
+      console.log('Clicked')}>
+      Replay
+      </button>
+  )
+}
+
+const Display = () => {
+  return (
+    <pre>
+      Times clicked
+    </pre>
+  )
 }
 
 export default App;
