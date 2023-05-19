@@ -2,7 +2,7 @@ import card from './images/card.svg';
 import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
-function App() {
+const FlipCardGame = () => {
   return (
     <>
      <div className="App">
@@ -50,10 +50,6 @@ function App() {
           </div>
         </div>
 
-        <div class="container">
-          <div class="row">
-          </div>
-        </div>
 
         <div class = "container">
           <GameManager />
@@ -68,30 +64,31 @@ const GameManager = () => {
   return (
     <>
     <Display />
+    <Display />
+    <Display />
     <Button />
     </>
   )
 }
 
 
-const Button = () => {
+const Button = ({task},{clickAction}) => {
   return (
     <button 
     type="button" 
     class="btn btn-outline-warning" 
-    onClick = {() => 
-      console.log('Clicked')}>
-      Replay
-      </button>
+    onClick = {{clickAction}}>
+     {task}
+    </button>
   )
 }
 
-const Display = () => {
+const Display = ({item}, {count}) => {
   return (
     <pre>
-      Times clicked
+      {item}: {count}
     </pre>
   )
 }
 
-export default App;
+export default FlipCardGame;
