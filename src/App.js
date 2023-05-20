@@ -26,6 +26,9 @@ const FlipCardGame = () => {
     { id: 10, value: 'bee-shirt', flipped: false, matched: false, flippedImage: shirt },
   ]);
 
+  const [flippedCardIds, setFlippedCardIds] = useState([]);
+  const [matchedCardIds, setMatchedCardIds] = useState([]);
+
   const GameStats = () => {
     return (
       <>
@@ -57,13 +60,14 @@ const FlipCardGame = () => {
     )
   }
   
-  const Card = ( {cardImage}, {onClick}) => {
+  const Card = ( {cardImage}) => {
     return (
       <img 
       src={cardImage} 
       class="btn img-fluid" 
-      onClick={()=> console.log('Card clicked!')}
-      alt="Card One"></img>
+      onClick={()=> setFlippedCardIds(!flippedCardIds)}
+      alt="Card One"
+      />
     )
   }
   
@@ -74,7 +78,7 @@ const FlipCardGame = () => {
           <Row key={row}>
             {[0, 1, 2, 3, 4].map((col) => (
               <Col key={col}>
-                <Card cardImage={cards[row * 5 + col].flippedImage}/>
+                <Card cardImage={flippedCardIds? cards[row * 5 + col].flippedImage : defaultImage}/>
               </Col>
             ))}
           </Row>
