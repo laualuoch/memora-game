@@ -19,7 +19,7 @@ const FlipCardGame = () => {
     { id: 10, value: 'bee-shirt', flipped: false, matched: false, defaultImage: {card}},
   ]);
 
-  const GameManager = () => {
+  const GameStats = () => {
     return (
       <>
       <Display countItem = "Moves"/>
@@ -50,9 +50,13 @@ const FlipCardGame = () => {
     )
   }
   
-  const Card = ( {onClick}) => {
+  const Card = ( {cardImage}, {onClick}) => {
     return (
-      <img src={card} class="btn img-fluid" alt="Card One"></img>
+      <img 
+      src={card} 
+      class="btn img-fluid" 
+      onClick={()=> console.log('Card clicked!')}
+      alt="Card One"></img>
     )
   }
   
@@ -88,7 +92,7 @@ const FlipCardGame = () => {
 
         <div class = "container">
           <h4>Game Stats</h4>
-          <GameManager />
+          <GameStats />
         </div>
       </body>
     </div>
