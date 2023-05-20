@@ -15,7 +15,7 @@ const FlipCardGame = () => {
 
   const [cards, setCards] = useState ([
     { id: 1, value: 'bee-cap', flipped: false, matched: false, flippedImage: cap },
-    { id: 2, value: 'bee-romper', flipped: false, matched: false, flippedImage: romper },
+    { id: 2, value: 'bee-romper', flipped: true, matched: false, flippedImage: romper },
     { id: 3, value: 'bee-skirt', flipped: false, matched: false, flippedImage: skirt },
     { id: 4, value: 'bee-shoes', flipped: false, matched: false, flippedImage: shoes },
     { id: 5, value: 'bee-shirt', flipped: false, matched: false,flippedImage: shirt },
@@ -28,6 +28,11 @@ const FlipCardGame = () => {
 
   const [flippedCardIds, setFlippedCardIds] = useState([]);
   const [matchedCardIds, setMatchedCardIds] = useState([]);
+
+  const handleCardClick = () => {
+    console.log('Card clicked!')
+  };
+
 
   const handleReplay = () => {
     setFlippedCardIds([]);
@@ -65,13 +70,13 @@ const FlipCardGame = () => {
     )
   }
   
-  const Card = ( {cardImage}) => {
+  const Card = ( {card}) => {
     return (
       <img 
-      src={cardImage} 
+      src={card.flipped ? card.flippedImage : defaultImage} 
       class="btn img-fluid" 
-      onClick={()=> setFlippedCardIds(!flippedCardIds)}
-      alt="Card One"
+      onClick={()=> handleCardClick(card.id)}
+      alt= { 'Card ${card.id} '}
       />
     )
   }
@@ -83,7 +88,7 @@ const FlipCardGame = () => {
           <Row key={row}>
             {[0, 1, 2, 3, 4].map((col) => (
               <Col key={col}>
-                <Card cardImage={flippedCardIds? cards[row * 5 + col].flippedImage : defaultImage}/>
+                <Card card= {cards[row * 5 + col]}/>
               </Col>
             ))}
           </Row>
