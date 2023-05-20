@@ -1,4 +1,9 @@
 import card from './images/card.svg';
+import cap from './images/bee-cap.svg';
+import romper from './images/bee-romper.svg';
+import shoes from './images/bee-shoes.svg';
+import skirt from './images/bee-skirt.svg';
+import shirt from './images/bee-shirt.svg';
 import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { useState } from 'react';
@@ -6,17 +11,19 @@ import { Row, Col } from 'react-bootstrap';
 
 const FlipCardGame = () => {
 
+  const defaultImage = card
+
   const [cards, setCards] = useState ([
-    { id: 1, value: 'bee-cap', flipped: false, matched: false, defaultImage: {card}},
-    { id: 2, value: 'bee-romper', flipped: false, matched: false, defaultImage: {card }},
-    { id: 3, value: 'bee-skirt', flipped: false, matched: false, defaultImage: {card }},
-    { id: 4, value: 'bee-shoes', flipped: false, matched: false, defaultImage: {card}},
-    { id: 5, value: 'bee-shirt', flipped: false, matched: false,defaultImage: {card }},
-    { id: 6, value: 'bee-cap', flipped: false, matched: false, defaultImage: {card} },
-    { id: 7, value: 'bee-romper', flipped: false, matched: false, defaultImage: {card}},
-    { id: 8, value: 'bee-skirt', flipped: false, matched: false, defaultImage: {card}},
-    { id: 9, value: 'bee-shoes', flipped: false, matched: false, defaultImage: {card}},
-    { id: 10, value: 'bee-shirt', flipped: false, matched: false, defaultImage: {card}},
+    { id: 1, value: 'bee-cap', flipped: false, matched: false, flippedImage: cap },
+    { id: 2, value: 'bee-romper', flipped: false, matched: false, flippedImage: romper },
+    { id: 3, value: 'bee-skirt', flipped: false, matched: false, flippedImage: skirt },
+    { id: 4, value: 'bee-shoes', flipped: false, matched: false, flippedImage: shoes },
+    { id: 5, value: 'bee-shirt', flipped: false, matched: false,flippedImage: shirt },
+    { id: 6, value: 'bee-cap', flipped: false, matched: false, flippedImage: cap },
+    { id: 7, value: 'bee-romper', flipped: false, matched: false, flippedImage: romper },
+    { id: 8, value: 'bee-skirt', flipped: false, matched: false, flippedImage: skirt },
+    { id: 9, value: 'bee-shoes', flipped: false, matched: false, flippedImage: shoes },
+    { id: 10, value: 'bee-shirt', flipped: false, matched: false, flippedImage: shirt },
   ]);
 
   const GameStats = () => {
@@ -53,7 +60,7 @@ const FlipCardGame = () => {
   const Card = ( {cardImage}, {onClick}) => {
     return (
       <img 
-      src={card} 
+      src={cardImage} 
       class="btn img-fluid" 
       onClick={()=> console.log('Card clicked!')}
       alt="Card One"></img>
@@ -67,14 +74,14 @@ const FlipCardGame = () => {
           <Row key={row}>
             {[0, 1, 2, 3, 4].map((col) => (
               <Col key={col}>
-                <Card />
+                <Card cardImage={cards[row * 5 + col].flippedImage}/>
               </Col>
             ))}
           </Row>
         ))}
       </div>
     )
-  }
+  };
 
   return (
     <>
