@@ -14,23 +14,61 @@ const FlipCardGame = () => {
   const defaultImage = card
 
   const [cards, setCards] = useState ([
-    { id: 1, value: 'bee-cap', flipped: false, matched: false, flippedImage: cap },
-    { id: 2, value: 'bee-romper', flipped: true, matched: false, flippedImage: romper },
-    { id: 3, value: 'bee-skirt', flipped: false, matched: false, flippedImage: skirt },
-    { id: 4, value: 'bee-shoes', flipped: false, matched: false, flippedImage: shoes },
-    { id: 5, value: 'bee-shirt', flipped: false, matched: false,flippedImage: shirt },
-    { id: 6, value: 'bee-cap', flipped: false, matched: false, flippedImage: cap },
-    { id: 7, value: 'bee-romper', flipped: false, matched: false, flippedImage: romper },
-    { id: 8, value: 'bee-skirt', flipped: false, matched: false, flippedImage: skirt },
+    { id: 1, value: 'bee-shirt', flipped: false, matched: false, flippedImage: shirt },
+    { id: 2, value: 'bee-shoes', flipped: false, matched: false, flippedImage: shoes },
+    { id: 3, value: 'bee-cap', flipped: false, matched: false, flippedImage: cap },
+    { id: 4, value: 'bee-romper', flipped: false, matched: false, flippedImage: romper },
+    { id: 5, value: 'bee-romper', flipped: false, matched: false, flippedImage: romper },
+    { id: 6, value: 'bee-skirt', flipped: false, matched: false, flippedImage: skirt },
+    { id: 7, value: 'bee-shirt', flipped: false, matched: false,flippedImage: shirt },
+    { id: 8, value: 'bee-cap', flipped: false, matched: false, flippedImage: cap },
     { id: 9, value: 'bee-shoes', flipped: false, matched: false, flippedImage: shoes },
-    { id: 10, value: 'bee-shirt', flipped: false, matched: false, flippedImage: shirt },
+    { id: 10, value: 'bee-skirt', flipped: false, matched: false, flippedImage: skirt },
   ]);
 
   const [flippedCardIds, setFlippedCardIds] = useState([]);
   const [matchedCardIds, setMatchedCardIds] = useState([]);
 
-  const handleCardClick = () => {
+  const handleCardClick = (cardId) => {
     console.log('Card clicked!')
+
+    const flippedCards = [...flippedCardIds];
+    const flippedCard = cards.find((card) => card.id === cardId);
+
+    // If the card is already flipped or matched, ignore the click
+    if (flippedCard.flipped || flippedCard.matched) {
+      return;
+    }
+
+    // Flip the card
+    flippedCard.flipped = true;
+    flippedCards.push(cardId);
+
+    setFlippedCardIds(flippedCards);
+
+    // Check if two cards are flipped
+    if (flippedCards.length === 2) {
+      const [card1, card2] = flippedCards;
+      const flippedCard1 = cards.find((card) => card.id === card1);
+      const flippedCard2 = cards.find((card) => card.id === card2);
+
+      
+
+      // If the values of the flipped cards match, mark them as matched
+      if (flippedCard1.value === flippedCard2.value) {
+        flippedCard1.matched = true;
+        flippedCard2.matched = true;
+        setMatchedCardIds([...matchedCardIds, card1, card2]);
+        setFlippedCardIds([]);
+      } else {
+        // If the values don't match, flip the cards back after a short delay
+        setTimeout(() => {
+          flippedCard1.flipped = false;
+          flippedCard2.flipped = false;
+          setFlippedCardIds([]);
+        }, 200);
+      }
+    }
   };
 
 
