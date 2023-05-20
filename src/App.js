@@ -1,8 +1,24 @@
 import card from './images/card.svg';
 import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import { useState } from 'react';
+import { Row, Col } from 'react-bootstrap';
 
-function App() {
+const FlipCardGame = () => {
+
+  const [cards, setCards] = useState ([
+    { id: 1, value: 'bee-cap', flipped: false, matched: false, defaultImage: {card}},
+    { id: 2, value: 'bee-romper', flipped: false, matched: false, defaultImage: {card }},
+    { id: 3, value: 'bee-skirt', flipped: false, matched: false, defaultImage: {card }},
+    { id: 4, value: 'bee-shoes', flipped: false, matched: false, defaultImage: {card}},
+    { id: 5, value: 'bee-shirt', flipped: false, matched: false,defaultImage: {card }},
+    { id: 6, value: 'bee-cap', flipped: false, matched: false, defaultImage: {card} },
+    { id: 7, value: 'bee-romper', flipped: false, matched: false, defaultImage: {card}},
+    { id: 8, value: 'bee-skirt', flipped: false, matched: false, defaultImage: {card}},
+    { id: 9, value: 'bee-shoes', flipped: false, matched: false, defaultImage: {card}},
+    { id: 10, value: 'bee-shirt', flipped: false, matched: false, defaultImage: {card}},
+  ]);
+
   return (
     <>
      <div className="App">
@@ -13,49 +29,12 @@ function App() {
       </header>
       <body className="App-body">
         <div class="container">
-          <div class="row">
-            <div class="col">
-              <img src={card} class="img-fluid" alt="Card One"></img>
-            </div>
-            <div class="col">
-              <img src={card} class="img-fluid" alt="Card Two"></img>
-            </div>
-            <div class="col">
-              <img src={card} class="img-fluid" alt="Card Three"></img>
-            </div>
-            <div class="col">
-              <img src={card} class="img-fluid" alt="Card Four"></img>
-            </div>
-            <div class="col">
-              <img src={card} class="img-fluid" alt="Card Five"></img>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col">
-              <img src={card} class="img-fluid" alt="Card Ten"></img>
-            </div>
-            <div class="col">
-              <img src={card} class="img-fluid" alt="Card Nine"></img>
-            </div>
-            <div class="col">
-              <img src={card} class="img-fluid" alt="Card Eight"></img>
-            </div>
-            <div class="col">
-              <img src={card} class="img-fluid" alt="Card Seven"></img>
-            </div>
-            <div class="col">
-              <img src={card} class="img-fluid" alt="Card Six"></img>
-            </div>
-          </div>
+          <DisplayCards />
         </div>
 
-        <div class="container">
-          <div class="row">
-          </div>
-        </div>
 
         <div class = "container">
+          <h4>Game Stats</h4>
           <GameManager />
         </div>
       </body>
@@ -67,31 +46,54 @@ function App() {
 const GameManager = () => {
   return (
     <>
-    <Display />
+    <Display countItem = "Moves"/>
+    <Display countItem = "Allowed Moves"/>
+    <Display countItem = "Rounds Played"/>
+    <Display countItem = "Accuracy"/>
     <Button />
     </>
   )
 }
 
-
-const Button = () => {
+const Button = ({countItem},{clickAction}) => {
   return (
     <button 
     type="button" 
     class="btn btn-outline-warning" 
-    onClick = {() => 
-      console.log('Clicked')}>
-      Replay
-      </button>
+    onClick = {{clickAction}} >
+     Replay
+    </button>
   )
 }
 
-const Display = () => {
+const Display = ({countItem}, {count}) => {
   return (
-    <pre>
-      Times clicked
-    </pre>
+    <div>
+      <h6>{countItem}: {count}</h6>
+    </div>
   )
 }
 
-export default App;
+const Card = ( {onClick}) => {
+  return (
+    <img src={card} class="btn img-fluid" alt="Card One"></img>
+  )
+}
+
+const DisplayCards = () => {
+  return (
+    <div>
+      {[0, 1].map((row) => (
+        <Row key={row}>
+          {[0, 1, 2, 3, 4].map((col) => (
+            <Col key={col}>
+              <Card />
+            </Col>
+          ))}
+        </Row>
+      ))}
+    </div>
+  )
+}
+
+export default FlipCardGame;
