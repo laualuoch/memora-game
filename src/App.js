@@ -19,6 +19,59 @@ const FlipCardGame = () => {
     { id: 10, value: 'bee-shirt', flipped: false, matched: false, defaultImage: {card}},
   ]);
 
+  const GameManager = () => {
+    return (
+      <>
+      <Display countItem = "Moves"/>
+      <Display countItem = "Allowed Moves"/>
+      <Display countItem = "Rounds Played"/>
+      <Display countItem = "Accuracy"/>
+      <Button />
+      </>
+    )
+  }
+  
+  const Button = ({countItem},{clickAction}) => {
+    return (
+      <button 
+      type="button" 
+      class="btn btn-outline-warning" 
+      onClick = {{clickAction}} >
+       Replay
+      </button>
+    )
+  }
+  
+  const Display = ({countItem}, {count}) => {
+    return (
+      <div>
+        <h6>{countItem}: {count}</h6>
+      </div>
+    )
+  }
+  
+  const Card = ( {onClick}) => {
+    return (
+      <img src={card} class="btn img-fluid" alt="Card One"></img>
+    )
+  }
+  
+  const DisplayCards = () => {
+    return (
+      <div>
+        {[0, 1].map((row) => (
+          <Row key={row}>
+            {[0, 1, 2, 3, 4].map((col) => (
+              <Col key={col}>
+                <Card />
+              </Col>
+            ))}
+          </Row>
+        ))}
+      </div>
+    )
+  }
+
   return (
     <>
      <div className="App">
@@ -41,59 +94,6 @@ const FlipCardGame = () => {
     </div>
     </>
   );
-}
-
-const GameManager = () => {
-  return (
-    <>
-    <Display countItem = "Moves"/>
-    <Display countItem = "Allowed Moves"/>
-    <Display countItem = "Rounds Played"/>
-    <Display countItem = "Accuracy"/>
-    <Button />
-    </>
-  )
-}
-
-const Button = ({countItem},{clickAction}) => {
-  return (
-    <button 
-    type="button" 
-    class="btn btn-outline-warning" 
-    onClick = {{clickAction}} >
-     Replay
-    </button>
-  )
-}
-
-const Display = ({countItem}, {count}) => {
-  return (
-    <div>
-      <h6>{countItem}: {count}</h6>
-    </div>
-  )
-}
-
-const Card = ( {onClick}) => {
-  return (
-    <img src={card} class="btn img-fluid" alt="Card One"></img>
-  )
-}
-
-const DisplayCards = () => {
-  return (
-    <div>
-      {[0, 1].map((row) => (
-        <Row key={row}>
-          {[0, 1, 2, 3, 4].map((col) => (
-            <Col key={col}>
-              <Card />
-            </Col>
-          ))}
-        </Row>
-      ))}
-    </div>
-  )
 }
 
 export default FlipCardGame;
