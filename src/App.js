@@ -29,6 +29,12 @@ const FlipCardGame = () => {
   const [flippedCardIds, setFlippedCardIds] = useState([]);
   const [matchedCardIds, setMatchedCardIds] = useState([]);
 
+  const handleReplay = () => {
+    setFlippedCardIds([]);
+    setMatchedCardIds([]);
+    setCards(cards.map((card) => ({ ...card, flipped: false, matched: false })));
+  };
+
   const GameStats = () => {
     return (
       <>
@@ -41,15 +47,14 @@ const FlipCardGame = () => {
     )
   }
   
-  const Button = ({countItem},{clickAction}) => {
+  const Button = () => {
     return (
-      <button 
-      type="button" 
-      class="btn btn-outline-warning" 
-      onClick = {{clickAction}} >
-       Replay
+      <button type="button" 
+      className="btn btn-outline-warning" 
+      onClick={handleReplay}>
+        Replay
       </button>
-    )
+    );
   }
   
   const Display = ({countItem}, {count}) => {
