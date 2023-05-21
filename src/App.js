@@ -35,6 +35,7 @@ const FlipCardGame = () => {
   const [flippedCardIds, setFlippedCardIds] = useState([]);
   const [matchedCardIds, setMatchedCardIds] = useState([]);
   const [moves, setMoves] = useState(0);
+  const [gamesPlayed, setGamesPlayed] = useState(0);
 
   const handleCardClick = (cardId) => {
     console.log('Card clicked!')
@@ -52,7 +53,6 @@ const FlipCardGame = () => {
     flippedCards.push(cardId);
 
     setFlippedCardIds(flippedCards);
-
     setMoves((moves)=> moves + 1);
 
     // Check if two cards are flipped
@@ -85,6 +85,7 @@ const FlipCardGame = () => {
     setMatchedCardIds([]);
     setCards(cards.map((card) => ({ ...card, flipped: false, matched: false })));
     setMoves(0);
+    setGamesPlayed((gamesPlayed) => gamesPlayed + 1);
   };
 
   const GameStats = () => {
@@ -92,7 +93,7 @@ const FlipCardGame = () => {
       <>
       <Display countItem = "Moves" count={moves}/>
       <Display countItem = "Allowed Moves" />
-      <Display countItem = "Rounds Played" />
+      <Display countItem = "Rounds Played" count={gamesPlayed} />
       <Display countItem = "Accuracy" />
       <Button />
       </>
