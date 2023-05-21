@@ -4,6 +4,12 @@ import romper from './images/bee-romper.svg';
 import shoes from './images/bee-shoes.svg';
 import skirt from './images/bee-skirt.svg';
 import shirt from './images/bee-shirt.svg';
+import a from './images/a.svg';
+import h from './images/h.svg';
+import p from './images/p.svg';
+import y from './images/y.svg';
+import u from './images/u.svg';
+import n from './images/n.svg';
 import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { useState } from 'react';
@@ -14,16 +20,16 @@ const FlipCardGame = () => {
   const defaultImage = card
 
   const [cards, setCards] = useState ([
-    { id: 1, value: 'bee-shirt', flipped: false, matched: false, flippedImage: shirt },
-    { id: 2, value: 'bee-shoes', flipped: false, matched: false, flippedImage: shoes },
-    { id: 3, value: 'bee-cap', flipped: false, matched: false, flippedImage: cap },
-    { id: 4, value: 'bee-romper', flipped: false, matched: false, flippedImage: romper },
-    { id: 5, value: 'bee-romper', flipped: false, matched: false, flippedImage: romper },
-    { id: 6, value: 'bee-skirt', flipped: false, matched: false, flippedImage: skirt },
-    { id: 7, value: 'bee-shirt', flipped: false, matched: false,flippedImage: shirt },
-    { id: 8, value: 'bee-cap', flipped: false, matched: false, flippedImage: cap },
-    { id: 9, value: 'bee-shoes', flipped: false, matched: false, flippedImage: shoes },
-    { id: 10, value: 'bee-skirt', flipped: false, matched: false, flippedImage: skirt },
+    { id: 1, value: 'bee-shirt', flipped: false, matched: false, flippedImage: shirt, supriseImage: h },
+    { id: 2, value: 'bee-shoes', flipped: false, matched: false, flippedImage: shoes, supriseImage: a },
+    { id: 3, value: 'bee-cap', flipped: false, matched: false, flippedImage: cap, supriseImage: p },
+    { id: 4, value: 'bee-romper', flipped: false, matched: false, flippedImage: romper, supriseImage: p},
+    { id: 5, value: 'bee-romper', flipped: false, matched: false, flippedImage: romper, supriseImage: y },
+    { id: 6, value: 'bee-skirt', flipped: false, matched: false, flippedImage: skirt, supriseImage: h },
+    { id: 7, value: 'bee-shirt', flipped: false, matched: false,flippedImage: shirt , supriseImage: u},
+    { id: 8, value: 'bee-cap', flipped: false, matched: false, flippedImage: cap, supriseImage: n },
+    { id: 9, value: 'bee-shoes', flipped: false, matched: false, flippedImage: shoes, supriseImage: n },
+    { id: 10, value: 'bee-skirt', flipped: false, matched: false, flippedImage: skirt, supriseImage: y },
   ]);
 
   const [flippedCardIds, setFlippedCardIds] = useState([]);
@@ -52,16 +58,13 @@ const FlipCardGame = () => {
       const flippedCard1 = cards.find((card) => card.id === card1);
       const flippedCard2 = cards.find((card) => card.id === card2);
 
-      
-
-      // If the values of the flipped cards match, mark them as matched
       if (flippedCard1.value === flippedCard2.value) {
         flippedCard1.matched = true;
         flippedCard2.matched = true;
         setMatchedCardIds([...matchedCardIds, card1, card2]);
         setFlippedCardIds([]);
       } else {
-        // If the values don't match, flip the cards back after a short delay
+        // Flip cards that dont match back after a short while
         setTimeout(() => {
           flippedCard1.flipped = false;
           flippedCard2.flipped = false;
