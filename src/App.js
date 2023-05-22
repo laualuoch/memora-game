@@ -51,7 +51,8 @@ const FlipCardGame = () => {
     matchedCardIds: [],
     moves: 0,
     gamesPlayed: 0,
-    gameCompleted: false
+    gameCompleted: false,
+    successfulMoves: 0
   };
 
   const [cards, setCards] = useState (initialState.cards);
@@ -60,7 +61,7 @@ const FlipCardGame = () => {
   const [moves, setMoves] = useState(initialState.moves);
   const [gamesPlayed, setGamesPlayed] = useState(initialState.gamesPlayed);
   const [gameCompleted, setGameCompleted] = useState(initialState.gameCompleted);
-
+  const [successfulMoves, setSuccessfulMoves] = useState(initialState.successfulMoves);
   useEffect(() => {
     const gameState = {
       cards,
@@ -106,6 +107,7 @@ const FlipCardGame = () => {
         flippedCard2.matched = true;
         setMatchedCardIds([...matchedCardIds, card1, card2]);
         setFlippedCardIds([]);
+        setSuccessfulMoves((successfulMoves) => successfulMoves + 1);
 
         if(matchedCardIds.length === cards.length - 2) {
           setGameCompleted(true);
@@ -122,6 +124,12 @@ const FlipCardGame = () => {
       }
     }
   };
+
+  const calculateAccuracy = () => {
+    // const successfulMovesNumber = parseInt(successfulMoves);
+    // const movesNumber = parseInt(moves);
+    return  (successfulMoves * 100 ) / moves;
+  }
 
 
   const handleReplay = () => {
@@ -140,7 +148,7 @@ const FlipCardGame = () => {
       <Display countItem = "Moves" count={moves}/>
       <Display countItem = "Moves Left" count={maxMoves - moves}/>
       <Display countItem = "Rounds Played" count={gamesPlayed} />
-      <Display countItem = "Accuracy" />
+      <Display countItem = "Accuracy" count={calculateAccuracy()}/>
       <Button />
       </>
     )
