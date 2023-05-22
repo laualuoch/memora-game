@@ -14,6 +14,7 @@ import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { useState, useEffect } from 'react';
 import { Row, Col } from 'react-bootstrap';
+import { ArrowClockwise } from 'react-bootstrap-icons';
 
 const GAME_STATE = 'flipCardGameState'
 
@@ -61,7 +62,7 @@ const FlipCardGame = () => {
   const [moves, setMoves] = useState(initialState.moves);
   const [gamesPlayed, setGamesPlayed] = useState(initialState.gamesPlayed);
   const [gameCompleted, setGameCompleted] = useState(initialState.gameCompleted);
-  const [successfulMoves, setSuccessfulMoves] = useState(initialState.successfulMoves);
+  const [successfulMoves, setSuccessfulMoves] = useState(initialState.successfulFlips);
   
   useEffect(() => {
     const gameState = {
@@ -80,6 +81,12 @@ const FlipCardGame = () => {
   //this is a value I have decided to go with 10 should be the min moves allowed
   const maxMoves = cards.length * 2;
 
+  /*Using Match expectations outcome outline by 
+  Daniel J.Vellman and Gregory S. Warrington here's a calculation for 
+  expoected number of tries. Linked https://arxiv.org/abs/1208.4854
+  */
+
+
   const handleCardClick = (cardId) => {
     console.log('Card clicked!')
 
@@ -96,13 +103,13 @@ const FlipCardGame = () => {
     flippedCards.push(cardId);
 
     setFlippedCardIds(flippedCards);
-    setMoves((moves)=> moves + 1);
 
     if (flippedCards.length === 2) {
       const [card1, card2] = flippedCards;
       const flippedCard1 = cards.find((card) => card.id === card1);
       const flippedCard2 = cards.find((card) => card.id === card2);
-
+      setMoves((moves)=> moves + 1);
+      
       if (flippedCard1.value === flippedCard2.value) {
         flippedCard1.matched = true;
         flippedCard2.matched = true;
@@ -127,7 +134,9 @@ const FlipCardGame = () => {
   };
 
   const calculateAccuracy = () => {
-    return (successfulMoves * 100) / moves;
+    const successfulMovesNumber = parseFloat(successfulMoves).toFixed(2)
+    const movesNumber = parseFloat(moves).toFixed(2);
+    return (successfulMovesNumber * 100) / movesNumber;
   }
 
   const handleReplay = () => {
@@ -155,8 +164,9 @@ const FlipCardGame = () => {
   const Button = () => {
     return (
       <button type="button" 
-      className="btn btn-outline-warning" 
+      className="btn warning" 
       onClick={handleReplay}>
+        <ArrowClockwise />
         Replay
       </button>
     );
