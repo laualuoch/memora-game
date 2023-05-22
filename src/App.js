@@ -121,7 +121,11 @@ const FlipCardGame = () => {
   const Card = ( {card}) => {
     return (
       <img 
-      src={card.flipped ? card.flippedImage : defaultImage} 
+      src={ card.matched 
+        ? card.supriseImage
+        : card.flipped 
+        ? card.flippedImage 
+        : defaultImage} 
       class="btn img-fluid" 
       onClick={()=> handleCardClick(card.id)}
       alt= { 'Card ${card.id} '}
