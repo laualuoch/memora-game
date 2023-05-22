@@ -138,7 +138,10 @@ const FlipCardGame = () => {
   const calculateAccuracy = () => {
     const successfulMovesNumber = parseFloat(successfulMoves);
     const movesNumber = parseFloat(moves);
-    return ((successfulMovesNumber * 100) / movesNumber).toFixed(2);
+
+    const accuracy = ((successfulMovesNumber * 100) / movesNumber).toFixed(2);
+    
+    return isNaN(accuracy) ? 0 : accuracy;
   }
 
   const handleReplay = () => {
