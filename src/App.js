@@ -75,6 +75,9 @@ const FlipCardGame = () => {
   }, [cards, flippedCardIds, matchedCardIds, moves, gamesPlayed, gameCompleted]);
 
 
+  //this is a value I have decided to go with 10 should be the min moves allowed
+  const maxMoves = cards.length * 2;
+
   const handleCardClick = (cardId) => {
     console.log('Card clicked!')
 
@@ -93,7 +96,6 @@ const FlipCardGame = () => {
     setFlippedCardIds(flippedCards);
     setMoves((moves)=> moves + 1);
 
-    // Check if two cards are flipped
     if (flippedCards.length === 2) {
       const [card1, card2] = flippedCards;
       const flippedCard1 = cards.find((card) => card.id === card1);
@@ -128,13 +130,15 @@ const FlipCardGame = () => {
     setCards(cards.map((card) => ({ ...card, flipped: false, matched: false })));
     setMoves(0);
     setGamesPlayed((gamesPlayed) => gamesPlayed + 1);
+    setGameCompleted(false)
   };
 
   const GameStats = () => {
     return (
       <>
+      <Display countItem = "Allowed Moves" count={ maxMoves} />
       <Display countItem = "Moves" count={moves}/>
-      <Display countItem = "Allowed Moves" />
+      <Display countItem = "Moves Left" count={maxMoves - moves}/>
       <Display countItem = "Rounds Played" count={gamesPlayed} />
       <Display countItem = "Accuracy" />
       <Button />
