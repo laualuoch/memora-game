@@ -78,10 +78,6 @@ const FlipCardGame = () => {
     saveGameState(gameState);
   }, [cards, flippedCardIds, matchedCardIds, moves, gamesPlayed, gameCompleted, successfulMoves]);
 
-
-  //this is a value I have decided to go with 10 should be the min moves allowed
-  
-
   /*Using Match expectations outcome outline by 
   Daniel J.Vellman and Gregory S. Warrington here's a calculation for 
   expoected number of tries. Linked https://arxiv.org/abs/1208.4854
