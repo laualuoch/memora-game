@@ -1,3 +1,7 @@
+import { useState, useEffect } from 'react';
+import { Row, Col } from 'react-bootstrap';
+import { ArrowClockwise } from 'react-bootstrap-icons';
+import Lottie from 'lottie-react';
 import card from './images/card.json';
 import cap from './images/bee-cap.json';
 import romper from './images/bee-romper.json';
@@ -12,10 +16,6 @@ import u from './images/u.svg';
 import n from './images/n.svg';
 import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import { useState, useEffect } from 'react';
-import { Row, Col } from 'react-bootstrap';
-import { ArrowClockwise } from 'react-bootstrap-icons';
-import Lottie from "lottie-react";
 
 const GAME_STATE = 'flipCardGameState'
 
@@ -89,7 +89,7 @@ const FlipCardGame = () => {
   const defaultOptions = {
     loop: true,
     autoplay: false,
-    animationData: animationImageData.default,
+    animationData: animationImageData,
     rendererSettings: {
       preserveAspectRatio: "xMidYMid slice"
     }
@@ -205,14 +205,16 @@ const FlipCardGame = () => {
   
   const Card = ( {card}) => {
     return (
-      <Lottie 
-      options={defaultOptions}
-      className="btn img-fluid" 
-      onClick={()=> handleCardClick(card.id)}
-      alt= { 'Card ${card.id} '}
-      />
+      <div 
+      className="btn img-fluid"
+      onClick={()=> handleCardClick(card.id)}>
+         <Lottie 
+          options={defaultOptions}
+          alt= { 'Card ${card.id} '}
+          />
+      </div>
     )
-  }
+  };
   
   const DisplayCards = () => {
     return (
@@ -238,17 +240,17 @@ const FlipCardGame = () => {
             Flip card to Play!
         </p>
       </header>
-      <body className="App-body">
-        <div class="container">
+      <div className="App-body">
+        <div className="container">
           <DisplayCards />
         </div>
 
 
-        <div class = "container">
+        <div className = "container">
           <h4>Game Stats</h4>
           <GameStats />
         </div>
-      </body>
+      </div>
     </div>
     </>
   );
