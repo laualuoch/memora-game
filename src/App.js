@@ -12,30 +12,66 @@ import u from './images/u.svg';
 import n from './images/n.svg';
 import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Row, Col } from 'react-bootstrap';
+
+const GAME_STATE = 'flipCardGameState'
 
 const FlipCardGame = () => {
 
   const defaultImage = card
 
-  const [cards, setCards] = useState ([
-    { id: 1, value: 'bee-shirt', flipped: false, matched: false, flippedImage: shirt, supriseImage: h },
-    { id: 2, value: 'bee-shoes', flipped: false, matched: false, flippedImage: shoes, supriseImage: a },
-    { id: 3, value: 'bee-cap', flipped: false, matched: false, flippedImage: cap, supriseImage: p },
-    { id: 4, value: 'bee-romper', flipped: false, matched: false, flippedImage: romper, supriseImage: p},
-    { id: 5, value: 'bee-romper', flipped: false, matched: false, flippedImage: romper, supriseImage: y },
-    { id: 6, value: 'bee-skirt', flipped: false, matched: false, flippedImage: skirt, supriseImage: h },
-    { id: 7, value: 'bee-shirt', flipped: false, matched: false,flippedImage: shirt , supriseImage: u},
-    { id: 8, value: 'bee-cap', flipped: false, matched: false, flippedImage: cap, supriseImage: n },
-    { id: 9, value: 'bee-shoes', flipped: false, matched: false, flippedImage: shoes, supriseImage: n },
-    { id: 10, value: 'bee-skirt', flipped: false, matched: false, flippedImage: skirt, supriseImage: y },
-  ]);
+  const loadGameState = () => {
+    const storedState = localStorage.getItem(GAME_STATE);
+    if(storedState) {
+      return JSON.parse(storedState);
+    }
+    return null;
+  }
 
-  const [flippedCardIds, setFlippedCardIds] = useState([]);
-  const [matchedCardIds, setMatchedCardIds] = useState([]);
-  const [moves, setMoves] = useState(0);
-  const [gamesPlayed, setGamesPlayed] = useState(0);
+  const saveGameState = (state) => {
+    localStorage.setItem(GAME_STATE, JSON.stringify(state));
+    document.cookie = '${GAME_STATE}=${JSON.stringify(state)}; expires=Fri, 31 Dec 2050 23:59:59 GMT';
+  }
+
+  const initialState = loadGameState() || {
+    cards: [
+      { id: 1, value: 'bee-shirt', flipped: false, matched: false, flippedImage: shirt, supriseImage: h },
+      { id: 2, value: 'bee-shoes', flipped: false, matched: false, flippedImage: shoes, supriseImage: a },
+      { id: 3, value: 'bee-cap', flipped: false, matched: false, flippedImage: cap, supriseImage: p },
+      { id: 4, value: 'bee-romper', flipped: false, matched: false, flippedImage: romper, supriseImage: p},
+      { id: 5, value: 'bee-romper', flipped: false, matched: false, flippedImage: romper, supriseImage: y },
+      { id: 6, value: 'bee-skirt', flipped: false, matched: false, flippedImage: skirt, supriseImage: h },
+      { id: 7, value: 'bee-shirt', flipped: false, matched: false,flippedImage: shirt , supriseImage: u},
+      { id: 8, value: 'bee-cap', flipped: false, matched: false, flippedImage: cap, supriseImage: n },
+      { id: 9, value: 'bee-shoes', flipped: false, matched: false, flippedImage: shoes, supriseImage: n },
+      { id: 10, value: 'bee-skirt', flipped: false, matched: false, flippedImage: skirt, supriseImage: y }
+    ],
+    flippedCardIds: [],
+    matchedCardIds: [],
+    moves: 0,
+    gamesPlayed: 0,
+  };
+
+  const [cards, setCards] = useState (initialState.cards);
+  const [flippedCardIds, setFlippedCardIds] = useState(initialState.flippedCardIds);
+  const [matchedCardIds, setMatchedCardIds] = useState(initialState.matchedCardIds);
+  const [moves, setMoves] = useState(initialState.moves);
+  const [gamesPlayed, setGamesPlayed] = useState(initialState.gamesPlayed);
+
+
+  useEffect(() => {
+    const gameState = {
+      cards,
+      flippedCardIds,
+      matchedCardIds,
+      moves,
+      gamesPlayed
+    };
+
+    saveGameState(gameState);
+  }, [cards, flippedCardIds, matchedCardIds, moves, gamesPlayed]);
+
 
   const handleCardClick = (cardId) => {
     console.log('Card clicked!')
