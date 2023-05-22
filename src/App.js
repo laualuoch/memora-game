@@ -62,7 +62,7 @@ const FlipCardGame = () => {
   const [moves, setMoves] = useState(initialState.moves);
   const [gamesPlayed, setGamesPlayed] = useState(initialState.gamesPlayed);
   const [gameCompleted, setGameCompleted] = useState(initialState.gameCompleted);
-  const [successfulMoves, setSuccessfulMoves] = useState(initialState.successfulFlips);
+  const [successfulMoves, setSuccessfulMoves] = useState(initialState.successfulMoves);
   
   useEffect(() => {
     const gameState = {
@@ -71,7 +71,8 @@ const FlipCardGame = () => {
       matchedCardIds,
       moves,
       gamesPlayed,
-      gameCompleted
+      gameCompleted,
+      successfulMoves
     };
 
     saveGameState(gameState);
@@ -109,18 +110,19 @@ const FlipCardGame = () => {
       const flippedCard1 = cards.find((card) => card.id === card1);
       const flippedCard2 = cards.find((card) => card.id === card2);
       setMoves((moves)=> moves + 1);
-      
+
       if (flippedCard1.value === flippedCard2.value) {
         flippedCard1.matched = true;
         flippedCard2.matched = true;
         setMatchedCardIds([...matchedCardIds, card1, card2]);
         setFlippedCardIds([]);
-        setSuccessfulMoves((successfulMoves) => successfulMoves + 1);
+        setSuccessfulMoves((successfulMoves)=> successfulMoves + 1);
+        
         
         if(matchedCardIds.length === cards.length - 2) {
           setGameCompleted(true);
           console.log('Game completed!')
-        }
+        };
 
       } else {
         // Flip cards that dont match back after a short while
@@ -134,9 +136,9 @@ const FlipCardGame = () => {
   };
 
   const calculateAccuracy = () => {
-    const successfulMovesNumber = parseFloat(successfulMoves).toFixed(2)
-    const movesNumber = parseFloat(moves).toFixed(2);
-    return (successfulMovesNumber * 100) / movesNumber;
+    const successfulMovesNumber = parseFloat(successfulMoves);
+    const movesNumber = parseFloat(moves);
+    return ((successfulMovesNumber * 100) / movesNumber).toFixed(2);
   }
 
   const handleReplay = () => {
@@ -145,17 +147,21 @@ const FlipCardGame = () => {
     setCards(cards.map((card) => ({ ...card, flipped: false, matched: false })));
     setMoves(0);
     setGamesPlayed((gamesPlayed) => gamesPlayed + 1);
-    setGameCompleted(false)
+    setGameCompleted(false);
+    setSuccessfulMoves(0);
   };
 
   const GameStats = () => {
+
+    const accuracy = calculateAccuracy();
     return (
       <>
       <Display countItem = "Allowed Moves" count={maxMoves} />
       <Display countItem = "Moves" count={moves}/>
       <Display countItem = "Moves Left" count={maxMoves - moves}/>
       <Display countItem = "Rounds Played" count={gamesPlayed} />
-      <Display countItem = "Accuracy" count={ calculateAccuracy() }/>
+      <Display countItem = "Successful Moves" count={ successfulMoves }/>
+      <Display countItem = "Accuracy" count={ accuracy }/>
       <Button />
       </>
     )
