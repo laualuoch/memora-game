@@ -51,6 +51,7 @@ const FlipCardGame = () => {
     matchedCardIds: [],
     moves: 0,
     gamesPlayed: 0,
+    gameCompleted: false
   };
 
   const [cards, setCards] = useState (initialState.cards);
@@ -58,7 +59,7 @@ const FlipCardGame = () => {
   const [matchedCardIds, setMatchedCardIds] = useState(initialState.matchedCardIds);
   const [moves, setMoves] = useState(initialState.moves);
   const [gamesPlayed, setGamesPlayed] = useState(initialState.gamesPlayed);
-
+  const [gameCompleted, setGameCompleted] = useState(initialState.gameCompleted);
 
   useEffect(() => {
     const gameState = {
@@ -66,11 +67,12 @@ const FlipCardGame = () => {
       flippedCardIds,
       matchedCardIds,
       moves,
-      gamesPlayed
+      gamesPlayed,
+      gameCompleted
     };
 
     saveGameState(gameState);
-  }, [cards, flippedCardIds, matchedCardIds, moves, gamesPlayed]);
+  }, [cards, flippedCardIds, matchedCardIds, moves, gamesPlayed, gameCompleted]);
 
 
   const handleCardClick = (cardId) => {
@@ -103,6 +105,10 @@ const FlipCardGame = () => {
         setMatchedCardIds([...matchedCardIds, card1, card2]);
         setFlippedCardIds([]);
 
+        if(matchedCardIds.length === cards.length - 2) {
+          setGameCompleted(true);
+          console.log('Game completed!')
+        }
 
       } else {
         // Flip cards that dont match back after a short while
@@ -157,7 +163,8 @@ const FlipCardGame = () => {
   const Card = ( {card}) => {
     return (
       <img 
-      src={ card.matched 
+      src={ 
+        card.matched && gameCompleted
         ? card.supriseImage
         : card.flipped 
         ? card.flippedImage 
