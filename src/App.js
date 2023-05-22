@@ -108,7 +108,6 @@ const FlipCardGame = () => {
         flippedCard2.matched = true;
         setMatchedCardIds([...matchedCardIds, card1, card2]);
         setFlippedCardIds([]);
-
         setSuccessfulMoves((successfulMoves) => successfulMoves + 1);
         
         if(matchedCardIds.length === cards.length - 2) {
@@ -127,6 +126,10 @@ const FlipCardGame = () => {
     }
   };
 
+  const calculateAccuracy = () => {
+    return (successfulMoves * 100) / moves;
+  }
+
   const handleReplay = () => {
     setFlippedCardIds([]);
     setMatchedCardIds([]);
@@ -143,7 +146,7 @@ const FlipCardGame = () => {
       <Display countItem = "Moves" count={moves}/>
       <Display countItem = "Moves Left" count={maxMoves - moves}/>
       <Display countItem = "Rounds Played" count={gamesPlayed} />
-      <Display countItem = "Accuracy" count={ successfulMoves}/>
+      <Display countItem = "Accuracy" count={ calculateAccuracy() }/>
       <Button />
       </>
     )
