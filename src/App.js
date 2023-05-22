@@ -62,6 +62,7 @@ const FlipCardGame = () => {
   const [gamesPlayed, setGamesPlayed] = useState(initialState.gamesPlayed);
   const [gameCompleted, setGameCompleted] = useState(initialState.gameCompleted);
   const [successfulMoves, setSuccessfulMoves] = useState(initialState.successfulMoves);
+  
   useEffect(() => {
     const gameState = {
       cards,
@@ -73,7 +74,7 @@ const FlipCardGame = () => {
     };
 
     saveGameState(gameState);
-  }, [cards, flippedCardIds, matchedCardIds, moves, gamesPlayed, gameCompleted]);
+  }, [cards, flippedCardIds, matchedCardIds, moves, gamesPlayed, gameCompleted, successfulMoves]);
 
 
   //this is a value I have decided to go with 10 should be the min moves allowed
@@ -107,8 +108,9 @@ const FlipCardGame = () => {
         flippedCard2.matched = true;
         setMatchedCardIds([...matchedCardIds, card1, card2]);
         setFlippedCardIds([]);
-        setSuccessfulMoves((successfulMoves) => successfulMoves + 1);
 
+        setSuccessfulMoves((successfulMoves) => successfulMoves + 1);
+        
         if(matchedCardIds.length === cards.length - 2) {
           setGameCompleted(true);
           console.log('Game completed!')
@@ -125,13 +127,6 @@ const FlipCardGame = () => {
     }
   };
 
-  const calculateAccuracy = () => {
-    // const successfulMovesNumber = parseInt(successfulMoves);
-    // const movesNumber = parseInt(moves);
-    return  (successfulMoves * 100 ) / moves;
-  }
-
-
   const handleReplay = () => {
     setFlippedCardIds([]);
     setMatchedCardIds([]);
@@ -144,11 +139,11 @@ const FlipCardGame = () => {
   const GameStats = () => {
     return (
       <>
-      <Display countItem = "Allowed Moves" count={ maxMoves} />
+      <Display countItem = "Allowed Moves" count={maxMoves} />
       <Display countItem = "Moves" count={moves}/>
       <Display countItem = "Moves Left" count={maxMoves - moves}/>
       <Display countItem = "Rounds Played" count={gamesPlayed} />
-      <Display countItem = "Accuracy" count={calculateAccuracy()}/>
+      <Display countItem = "Accuracy" count={ successfulMoves}/>
       <Button />
       </>
     )
