@@ -1,7 +1,7 @@
+import { Player } from '@lottiefiles/react-lottie-player';
 import { useState, useEffect } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { ArrowClockwise } from 'react-bootstrap-icons';
-import Lottie from 'lottie-react';
 import card from './images/card.json';
 import cap from './images/bee-cap.json';
 import romper from './images/bee-romper.json';
@@ -77,23 +77,7 @@ const FlipCardGame = () => {
     };
 
     saveGameState(gameState);
-  }, [cards, flippedCardIds, matchedCardIds, moves, gamesPlayed, gameCompleted, successfulMoves]);
-
- const animationImageData = 
- card.matched && gameCompleted
- ? card.supriseImage
- : card.flipped 
- ? card.flippedImage 
- : defaultImage
-
-  const defaultOptions = {
-    loop: true,
-    autoplay: false,
-    animationData: animationImageData,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice"
-    }
-  };
+  }, [cards, flippedCardIds, matchedCardIds, moves, gamesPlayed, gameCompleted, successfulMoves]); 
 
   /*Using Match expectations outcome outline by 
   Daniel J.Vellman and Gregory S. Warrington here's a calculation for 
@@ -205,15 +189,25 @@ const FlipCardGame = () => {
   
   const Card = ( {card}) => {
     return (
-      <div 
-      className="btn img-fluid"
-      onClick={()=> handleCardClick(card.id)}>
-         <Lottie 
-          options={defaultOptions}
-          alt= { 'Card ${card.id} '}
-          />
+      <div
+      className="card-container"
+      onClick={() => handleCardClick(card.id)}
+      >
+        <Player
+        autoplay = {true}
+        loop = {false}
+        src = {
+          card.matched && gameCompleted
+          ? card.supriseImage
+          : card.flipped 
+          ? card.flippedImage 
+          : defaultImage
+        }
+        className="btn img-fluid"
+        onClick={()=> handleCardClick(card.id)}
+      />
       </div>
-    )
+     )
   };
   
   const DisplayCards = () => {
