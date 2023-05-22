@@ -80,12 +80,13 @@ const FlipCardGame = () => {
 
 
   //this is a value I have decided to go with 10 should be the min moves allowed
-  const maxMoves = cards.length * 2;
+  
 
   /*Using Match expectations outcome outline by 
   Daniel J.Vellman and Gregory S. Warrington here's a calculation for 
   expoected number of tries. Linked https://arxiv.org/abs/1208.4854
   */
+  const maxMoves = (1.61 * cards.length).toFixed(0);
 
 
   const handleCardClick = (cardId) => {
