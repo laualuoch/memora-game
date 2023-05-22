@@ -1,13 +1,13 @@
-import card from './images/card.svg';
-import cap from './images/bee-cap.svg';
-import romper from './images/bee-romper.svg';
-import shoes from './images/bee-shoes.svg';
-import skirt from './images/bee-skirt.svg';
-import shirt from './images/bee-shirt.svg';
-import a from './images/a.svg';
-import h from './images/h.svg';
-import p from './images/p.svg';
-import y from './images/y.svg';
+import card from './images/card.json';
+import cap from './images/bee-cap.json';
+import romper from './images/bee-romper.json';
+import shoes from './images/bee-shoes.json';
+import skirt from './images/bee-skirt.json';
+import shirt from './images/bee-shirt.json';
+import a from './images/a.json';
+import h from './images/h.json';
+import p from './images/p.json';
+import y from './images/y.json';
 import u from './images/u.svg';
 import n from './images/n.svg';
 import './css/App.css';
@@ -15,6 +15,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { useState, useEffect } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { ArrowClockwise } from 'react-bootstrap-icons';
+import Lottie from "lottie-react";
 
 const GAME_STATE = 'flipCardGameState'
 
@@ -77,6 +78,22 @@ const FlipCardGame = () => {
 
     saveGameState(gameState);
   }, [cards, flippedCardIds, matchedCardIds, moves, gamesPlayed, gameCompleted, successfulMoves]);
+
+ const animationImageData = 
+ card.matched && gameCompleted
+ ? card.supriseImage
+ : card.flipped 
+ ? card.flippedImage 
+ : defaultImage
+
+  const defaultOptions = {
+    loop: true,
+    autoplay: false,
+    animationData: animationImageData.default,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice"
+    }
+  };
 
   /*Using Match expectations outcome outline by 
   Daniel J.Vellman and Gregory S. Warrington here's a calculation for 
@@ -188,14 +205,9 @@ const FlipCardGame = () => {
   
   const Card = ( {card}) => {
     return (
-      <img 
-      src={ 
-        card.matched && gameCompleted
-        ? card.supriseImage
-        : card.flipped 
-        ? card.flippedImage 
-        : defaultImage} 
-      class="btn img-fluid" 
+      <Lottie 
+      options={defaultOptions}
+      className="btn img-fluid" 
       onClick={()=> handleCardClick(card.id)}
       alt= { 'Card ${card.id} '}
       />
