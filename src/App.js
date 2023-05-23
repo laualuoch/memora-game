@@ -38,15 +38,15 @@ const FlipCardGame = () => {
 
   const initialState = loadGameState() || {
     cards: [
-      { id: 1, value: 'bee-shirt', flipped: false, matched: false, flippedImage: shirt, supriseImage: h },
-      { id: 2, value: 'bee-shoes', flipped: false, matched: false, flippedImage: shoes, supriseImage: a },
-      { id: 3, value: 'bee-cap', flipped: false, matched: false, flippedImage: cap, supriseImage: p },
-      { id: 4, value: 'bee-romper', flipped: false, matched: false, flippedImage: romper, supriseImage: p},
-      { id: 5, value: 'bee-romper', flipped: false, matched: false, flippedImage: romper, supriseImage: y },
-      { id: 6, value: 'bee-skirt', flipped: false, matched: false, flippedImage: skirt, supriseImage: h },
-      { id: 7, value: 'bee-shirt', flipped: false, matched: false,flippedImage: shirt , supriseImage: u},
-      { id: 8, value: 'bee-cap', flipped: false, matched: false, flippedImage: cap, supriseImage: n },
-      { id: 9, value: 'bee-shoes', flipped: false, matched: false, flippedImage: shoes, supriseImage: n },
+      { id: 1, value: 'bee-shirt', flipped: false, matched: false, flippedImage: shirt, surpriseImage: h },
+      { id: 2, value: 'bee-shoes', flipped: false, matched: false, flippedImage: shoes, surpriseImage: a },
+      { id: 3, value: 'bee-cap', flipped: false, matched: false, flippedImage: cap, surpriseImage: p },
+      { id: 4, value: 'bee-romper', flipped: false, matched: false, flippedImage: romper, surpriseImage: p},
+      { id: 5, value: 'bee-romper', flipped: false, matched: false, flippedImage: romper, surpriseImage: y },
+      { id: 6, value: 'bee-skirt', flipped: false, matched: false, flippedImage: skirt, surpriseImage: h },
+      { id: 7, value: 'bee-shirt', flipped: false, matched: false,flippedImage: shirt , surpriseImage: u},
+      { id: 8, value: 'bee-cap', flipped: false, matched: false, flippedImage: cap, surpriseImage: n },
+      { id: 9, value: 'bee-shoes', flipped: false, matched: false, flippedImage: shoes, surpriseImage: n },
       { id: 10, value: 'bee-skirt', flipped: false, matched: false, flippedImage: skirt, supriseImage: y }
     ],
     flippedCardIds: [],
@@ -198,7 +198,7 @@ const FlipCardGame = () => {
         loop = {false}
         src = {
           card.matched && gameCompleted
-          ? card.supriseImage.value
+          ? card.surpriseImage
           : card.flipped
           ? card.flippedImage
           : defaultImage
