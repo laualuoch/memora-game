@@ -12,8 +12,8 @@ import a from './images/a.json';
 import h from './images/h.json';
 import p from './images/p.json';
 import y from './images/y.json';
-import u from './images/u.svg';
-import n from './images/n.svg';
+import u from './images/u.json';
+import n from './images/n.json';
 import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -87,7 +87,7 @@ const FlipCardGame = () => {
 
 
   const handleCardClick = (cardId) => {
-    console.log('Card clicked!')
+    console.log(cardId)
 
     const flippedCards = [...flippedCardIds];
     const flippedCard = cards.find((card) => card.id === cardId);
@@ -198,13 +198,11 @@ const FlipCardGame = () => {
         loop = {false}
         src = {
           card.matched && gameCompleted
-          ? card.supriseImage
-          : card.flipped 
-          ? card.flippedImage 
+          ? card.supriseImage.value
+          : card.flipped
+          ? card.flippedImage
           : defaultImage
-        }
-        className="btn img-fluid"
-        onClick={()=> handleCardClick(card.id)}
+        }    
       />
       </div>
      )
