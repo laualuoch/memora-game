@@ -47,7 +47,7 @@ const FlipCardGame = () => {
       { id: 7, value: 'bee-shirt', flipped: false, matched: false,flippedImage: shirt , surpriseImage: u},
       { id: 8, value: 'bee-cap', flipped: false, matched: false, flippedImage: cap, surpriseImage: n },
       { id: 9, value: 'bee-shoes', flipped: false, matched: false, flippedImage: shoes, surpriseImage: n },
-      { id: 10, value: 'bee-skirt', flipped: false, matched: false, flippedImage: skirt, supriseImage: y }
+      { id: 10, value: 'bee-skirt', flipped: false, matched: false, flippedImage: skirt, surpriseImage: y }
     ],
     flippedCardIds: [],
     matchedCardIds: [],
@@ -245,13 +245,9 @@ const FlipCardGame = () => {
             Flip card to Play!
         </p>
       </header>
-      <div className="App-body">
+      <div className="App-body container">
+        <DisplayCards />
         <div className="container">
-          <DisplayCards />
-        </div>
-
-
-        <div className = "container">
           <h4>Game Stats</h4>
           <GameStats />
         </div>
