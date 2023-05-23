@@ -1,7 +1,7 @@
 import { Player } from '@lottiefiles/react-lottie-player';
 import { useState, useEffect } from 'react';
 import { Row, Col } from 'react-bootstrap';
-import { ArrowClockwise } from 'react-bootstrap-icons';
+import { ArrowCounterclockwise } from 'react-bootstrap-icons';
 import card from './images/card.json';
 import cap from './images/bee-cap.json';
 import romper from './images/bee-romper.json';
@@ -171,9 +171,9 @@ const FlipCardGame = () => {
   const Button = () => {
     return (
       <button type="button" 
-      className="btn warning" 
+      className="btn btn-warning" 
       onClick={handleReplay}>
-        <ArrowClockwise />
+        <ArrowCounterclockwise />
         Replay
       </button>
     );
@@ -199,7 +199,6 @@ const FlipCardGame = () => {
       setIsHovered(false);
     };
   
-
     return (
       <div
       className={`card-container ${isHovered ? (isTopRow ? 'raise' : 'lower') : ''}`}
