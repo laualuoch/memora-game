@@ -39,6 +39,14 @@
   padding-bottom: 32px;
 }
 
-.custon-btn {
+.custom-btn {
   background-color: #e8d5c7;
+}
+
+.card-container.raise {
+  transform: translateY(-8px);
+}
+
+.card-container.lower {
+  transform: translateY(8px);
 }

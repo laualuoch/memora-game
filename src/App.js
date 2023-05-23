@@ -188,9 +188,23 @@ const FlipCardGame = () => {
   }
   
   const Card = ( {card}) => {
+    const isTopRow = card.id <= cards.length / 2;
+    const [isHovered, setIsHovered] = useState(false);
+
+    const handleMouseEnter = () => {
+      setIsHovered(true);
+    };
+  
+    const handleMouseLeave = () => {
+      setIsHovered(false);
+    };
+  
+
     return (
       <div
-      className="card-container"
+      className={`card-container ${isHovered ? (isTopRow ? 'raise' : 'lower') : ''}`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       onClick={() => handleCardClick(card.id)}
       >
         <Player
