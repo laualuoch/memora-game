@@ -1,5 +1,6 @@
 {
   "name": "flipcard-app",
+  "homepage": "https://flippcard-app.vercel.app/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
