@@ -42,8 +42,6 @@ Once, the installations are complete, you can start the game as below:
 2. This should open the game in your browser, however, in any case, this does not happen, in your web browser load
    the URL: `http://localhost:3000`
 
-Developed with ❤️ . Happy Gaming ❤️ 
-
    
 
 
