@@ -2,11 +2,12 @@ import { ArrowCounterclockwise } from 'react-bootstrap-icons';
 
 const PrimaryButton = ({onClick}) => {
         return (
-          <button type="button" 
-          className="btn btn-warning" 
-          onClick={onClick}>
+          <button 
+            type="button" 
+            className="btn btn-warning" 
+            onClick={onClick}>
             <ArrowCounterclockwise />
-            Replay
+                Replay
           </button>
         );
 }
