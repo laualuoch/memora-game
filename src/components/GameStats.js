@@ -1,14 +1,31 @@
-import GameStatsItem from "./GameStatsItem"
+import GameStatsstatItem from "./GameStatsstatItem"
 
-const GameStats = () => {
+const GameStats = (
+    {
+        maxMoves,
+        moves,
+        gamesPlayed,
+        successfulMoves,
+        accuracy
+    }) => {
+    const statItems = [
+        { statItem: "Allowed Moves", statCount: maxMoves },
+        { statItem: "Moves", statCount: moves },
+        { statItem: "Moves Left", statCount: maxMoves - moves },
+        { statItem: "Rounds Played", statCount: gamesPlayed },
+        { statItem: "Successful Moves", statItemCount: successfulMoves },
+        { statItem: "Accuracy", statItemCount: accuracy }
+    ];
+
     return (
         <>
-        <GameStatsItem countItem = "Allowed Moves" count={maxMoves} />
-        <GameStatsItem countItem = "Moves" count={moves}/>
-        <GameStatsItem countItem = "Moves Left" count={maxMoves - moves}/>
-        <GameStatsItem countItem = "Rounds Played" count={gamesPlayed} />
-        <GameStatsItem countItem = "Successful Moves" count={ successfulMoves }/>
-        <GameStatsItem countItem = "Accuracy" count={ accuracy }/>
+        {statItems.map((statItem, index) => (
+            <GameStatsstatItem
+            key = {index}
+            countstatItem = {statItem.statItem}
+            count = {statItem.statItemCount}
+            />
+            ))}
         </>
     );
 }
