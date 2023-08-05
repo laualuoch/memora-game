@@ -1,7 +1,6 @@
 import { Player } from '@lottiefiles/react-lottie-player';
 import { useState, useEffect } from 'react';
 import { Row, Col } from 'react-bootstrap';
-import { ArrowCounterclockwise } from 'react-bootstrap-icons';
 import card from './images/card.json';
 import cap from './images/bee-cap.json';
 import romper from './images/bee-romper.json';
@@ -16,6 +15,7 @@ import u from './images/u.json';
 import n from './images/n.json';
 import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import PrimaryButton from './components/PrimaryButton';
 
 const GAME_STATE = 'flipCardGameState'
 
@@ -163,21 +163,11 @@ const FlipCardGame = () => {
       <Display countItem = "Rounds Played" count={gamesPlayed} />
       <Display countItem = "Successful Moves" count={ successfulMoves }/>
       <Display countItem = "Accuracy" count={ accuracy }/>
-      <Button />
+      <PrimaryButton onClick = {handleReplay} />
       </>
     )
   }
-  
-  const Button = () => {
-    return (
-      <button type="button" 
-      className="btn btn-warning" 
-      onClick={handleReplay}>
-        <ArrowCounterclockwise />
-        Replay
-      </button>
-    );
-  }
+
   
   const Display = ({countItem, count}) => {
     return (
