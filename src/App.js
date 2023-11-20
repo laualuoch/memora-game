@@ -137,7 +137,7 @@ const FlipCardGame = () => {
     const successfulMovesNumber = parseFloat(successfulMoves);
     const movesNumber = parseFloat(moves);
 
-    const accuracy = ((successfulMovesNumber * 100) / movesNumber).toFixed(2);
+    const accuracy = ((successfulMovesNumber * 100) / movesNumber).toFixed(0);
     
     return isNaN(accuracy) ? 0 : accuracy;
   }
@@ -167,7 +167,7 @@ const FlipCardGame = () => {
           <div className="col-6">
             <Display countItem = "Rounds Played" count={gamesPlayed} />
             <Display countItem = "Successful Moves" count={ successfulMoves }/>
-            <Display countItem = "Accuracy" count={ accuracy }/>
+            <Display countItem = "Accuracy" count={ accuracy + "%" }/>
           </div>
         </div>
 
