@@ -157,13 +157,29 @@ const FlipCardGame = () => {
     const accuracy = calculateAccuracy();
     return (
       <>
-      <Display countItem = "Allowed Moves" count={maxMoves} />
-      <Display countItem = "Moves" count={moves}/>
-      <Display countItem = "Moves Left" count={maxMoves - moves}/>
-      <Display countItem = "Rounds Played" count={gamesPlayed} />
-      <Display countItem = "Successful Moves" count={ successfulMoves }/>
-      <Display countItem = "Accuracy" count={ accuracy }/>
-      <Button />
+        <div className="row justify-content-center">
+          <div className="col-6">
+            <Display countItem = "Allowed Moves" count={maxMoves} />
+            <Display countItem = "Moves" count={moves}/>
+            <Display countItem = "Moves Left" count={maxMoves - moves}/>
+          </div>
+
+          <div className="col-6">
+            <Display countItem = "Rounds Played" count={gamesPlayed} />
+            <Display countItem = "Successful Moves" count={ successfulMoves }/>
+            <Display countItem = "Accuracy" count={ accuracy }/>
+          </div>
+        </div>
+
+        <div className="action-container">
+          <div className="">
+            <Button />
+            <>
+              <Display countItem="Wins" count="To be Calculated"/>
+              <Display countItem="Losses" count="To be Calculated"/>
+            </>
+          </div>
+        </div>
       </>
     )
   }
@@ -182,7 +198,7 @@ const FlipCardGame = () => {
   const Display = ({countItem, count}) => {
     return (
       <div>
-        <h6>{countItem}: {count}</h6>
+        <h6><b>{countItem}:</b> {count}</h6>
       </div>
     )
   }
@@ -285,7 +301,7 @@ const FlipCardGame = () => {
             </h4>
 
             <GameStats />
-            
+
             <DisplayCards />
           </div>
         </div>
