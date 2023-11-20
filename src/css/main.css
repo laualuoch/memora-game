@@ -17,10 +17,18 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: 000;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.game-header {
+  font-weight: bold;
 }
 
 .App-body {
   background-color: transparent;
+  align-items: center;
+  justify-content: center;
 }
 
 .App-link {

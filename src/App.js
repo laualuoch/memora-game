@@ -241,15 +241,53 @@ const FlipCardGame = () => {
     <>
      <div className="App">
       <header className='App-header'>
-        <p>
-            Flip card to Play!
-        </p>
+       <h1 className="game-title">
+        Flipper
+       </h1>
       </header>
       <div className="App-body container">
-        <DisplayCards />
-        <div className="container">
-          <h4>Game Stats</h4>
-          <GameStats />
+        <div className= "row justify-content-center">
+          <div className="col-4">
+            <h4>
+              **Game Instructions**
+            </h4>
+
+            <ol>
+              <li>You will see a row of face-down cards on the game board.</li>
+              <li>Click on a card to flip it face up.</li>
+              <li>Once a card is face up, click on another card to flip it as well.</li>
+              <li>The objective is to flip matching cards consecutively to render the move a successful move.</li>
+              <li>When two cards flipped match, the cards are left face up</li>
+              <li>When the two cards flipped do not match, both cards are flipped back face down.</li>
+              <li>The goal is to flip all the cards (face up) to eventually reveal a surprise for a win.</li>
+            </ol>
+
+            <h4>
+              **Tips**
+            </h4>
+
+            <ol>
+              <li>Pay attention to the Cards flipped to move strategically.</li>
+              <li>Using the minimum moves possible is a win scenario</li>
+            </ol>
+
+            <h4>
+            **Replay**
+            </h4>
+
+            <ol>
+              <li>After completing the game, press replay button to start a new game session.</li>
+            </ol>
+          </div>
+          <div className="col-8">
+          <h4>
+              **Game Stats**
+            </h4>
+
+            <GameStats />
+            
+            <DisplayCards />
+          </div>
         </div>
       </div>
     </div>
