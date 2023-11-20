@@ -14,7 +14,7 @@ import p from './images/p.json';
 import y from './images/y.json';
 import u from './images/u.json';
 import n from './images/n.json';
-import './css/App.css';
+import './css/main.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const GAME_STATE = 'flipCardGameState'
@@ -137,7 +137,7 @@ const FlipCardGame = () => {
     const successfulMovesNumber = parseFloat(successfulMoves);
     const movesNumber = parseFloat(moves);
 
-    const accuracy = ((successfulMovesNumber * 100) / movesNumber).toFixed(2);
+    const accuracy = ((successfulMovesNumber * 100) / movesNumber).toFixed(0);
     
     return isNaN(accuracy) ? 0 : accuracy;
   }
@@ -157,13 +157,36 @@ const FlipCardGame = () => {
     const accuracy = calculateAccuracy();
     return (
       <>
-      <Display countItem = "Allowed Moves" count={maxMoves} />
-      <Display countItem = "Moves" count={moves}/>
-      <Display countItem = "Moves Left" count={maxMoves - moves}/>
-      <Display countItem = "Rounds Played" count={gamesPlayed} />
-      <Display countItem = "Successful Moves" count={ successfulMoves }/>
-      <Display countItem = "Accuracy" count={ accuracy }/>
-      <Button />
+        <div className="group-container row justify-content-center">
+          <div className="col-6">
+            <Display countItem = "Allowed Moves" count={maxMoves} />
+            <Display countItem = "Moves" count={moves}/>
+            <Display countItem = "Moves Left" count={maxMoves - moves}/>
+          </div>
+
+          <div className="col-6">
+            <Display countItem = "Rounds Played" count={gamesPlayed} />
+            <Display countItem = "Successful Moves" count={ successfulMoves }/>
+            <Display countItem = "Accuracy" count={ accuracy + "%" }/>
+          </div>
+        </div>
+
+        <div className="group-container">
+          <div className="row justify-content-center">
+              <div className="col-4">
+                <Display countItem="Wins" count="To be Calculated"/>
+              </div>
+
+              <div className="col-4">
+                <Display countItem="Losses" count="To be Calculated"/>
+              </div>
+
+              <div className="col-4">
+                <Button />
+              </div>
+
+          </div>
+        </div>
       </>
     )
   }
@@ -182,7 +205,7 @@ const FlipCardGame = () => {
   const Display = ({countItem, count}) => {
     return (
       <div>
-        <h6>{countItem}: {count}</h6>
+        <h6><b>{countItem}:</b> {count}</h6>
       </div>
     )
   }
@@ -241,15 +264,56 @@ const FlipCardGame = () => {
     <>
      <div className="App">
       <header className='App-header'>
-        <p>
-            Flip card to Play!
-        </p>
+       <h1 className="game-title">
+        Flipper
+       </h1>
       </header>
       <div className="App-body container">
-        <DisplayCards />
-        <div className="container">
-          <h4>Game Stats</h4>
-          <GameStats />
+        <div className= "row justify-content-center">
+          <div className="col-4">
+            <h4>
+              **Game Instructions**
+            </h4>
+
+            <ol>
+              <li>You will see a row of face-down cards on the game board.</li>
+              <li>Click on a card to flip it face up.</li>
+              <li>Once a card is face up, click on another card to flip it as well.</li>
+              <li>The objective is to flip matching cards consecutively to render the move a successful move.</li>
+              <li>When two cards flipped match, the cards are left face up</li>
+              <li>When the two cards flipped do not match, both cards are flipped back face down.</li>
+              <li>The goal is to flip all the cards (face up) to eventually reveal a surprise for a win.</li>
+            </ol>
+
+            <h4>
+              **Tips**
+            </h4>
+
+            <ol>
+              <li>Pay attention to the Cards flipped to move strategically.</li>
+              <li>Using the minimum moves possible is a win scenario</li>
+            </ol>
+
+            <h4>
+            **Replay**
+            </h4>
+
+            <ol>
+              <li>After completing the game, press replay button to start a new game session.</li>
+            </ol>
+          </div>
+          <div className="col-8">
+
+          <fieldset>
+            <legend>
+              <h4>**Game Stats**</h4>
+            </legend>
+
+            <GameStats />
+          </fieldset>
+
+            <DisplayCards />
+          </div>
         </div>
       </div>
     </div>
