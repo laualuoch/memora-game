@@ -1,6 +1,7 @@
 .App {
   background-image: url(/src/images/background.svg);
   min-height: 100vh;
+  font-family: 'Glass Antiqua', cursive;
 }
 
 @media (prefers-reduced-motion: no-preference) {

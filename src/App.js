@@ -14,7 +14,7 @@ import p from './images/p.json';
 import y from './images/y.json';
 import u from './images/u.json';
 import n from './images/n.json';
-import './css/App.css';
+import './css/main.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const GAME_STATE = 'flipCardGameState'
