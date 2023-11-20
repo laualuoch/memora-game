@@ -25,6 +25,10 @@
   font-weight: bold;
 }
 
+.group-container {
+  padding: 16px
+}
+
 .App-body {
   background-color: transparent;
   align-items: center;

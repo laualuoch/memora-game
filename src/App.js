@@ -157,7 +157,7 @@ const FlipCardGame = () => {
     const accuracy = calculateAccuracy();
     return (
       <>
-        <div className="row justify-content-center">
+        <div className="group-container row justify-content-center">
           <div className="col-6">
             <Display countItem = "Allowed Moves" count={maxMoves} />
             <Display countItem = "Moves" count={moves}/>
@@ -171,13 +171,20 @@ const FlipCardGame = () => {
           </div>
         </div>
 
-        <div className="action-container">
-          <div className="">
-            <Button />
-            <>
-              <Display countItem="Wins" count="To be Calculated"/>
-              <Display countItem="Losses" count="To be Calculated"/>
-            </>
+        <div className="group-container">
+          <div className="row justify-content-center">
+              <div className="col-4">
+                <Display countItem="Wins" count="To be Calculated"/>
+              </div>
+
+              <div className="col-4">
+                <Display countItem="Losses" count="To be Calculated"/>
+              </div>
+
+              <div className="col-4">
+                <Button />
+              </div>
+
           </div>
         </div>
       </>
@@ -296,11 +303,14 @@ const FlipCardGame = () => {
             </ol>
           </div>
           <div className="col-8">
-          <h4>
-              **Game Stats**
-            </h4>
+
+          <fieldset>
+            <legend>
+              <h4>**Game Stats**</h4>
+            </legend>
 
             <GameStats />
+          </fieldset>
 
             <DisplayCards />
           </div>
