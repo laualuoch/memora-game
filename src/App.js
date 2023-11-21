@@ -1,3 +1,4 @@
+import React from 'react';
 import { Player } from '@lottiefiles/react-lottie-player';
 import { useState, useEffect } from 'react';
 import { Row, Col } from 'react-bootstrap';
@@ -230,14 +231,14 @@ const FlipCardGame = () => {
       onClick={() => handleCardClick(card.id)}
       >
         <Player
-        autoplay = {true}
-        loop = {false}
-        src = {
-          card.matched && gameCompleted
-          ? card.surpriseImage
-          : card.flipped
-          ? card.flippedImage
-          : defaultImage
+          autoplay = {true}
+          loop = {false}
+          src = {
+            card.matched && gameCompleted
+            ? card.surpriseImage
+            : card.flipped
+            ? card.flippedImage
+            : defaultImage
         }    
       />
       </div>
