@@ -1,6 +1,6 @@
-# Flip Card Game
+# Flipper Game
 
-Welcome to Flip Card Game! This is a simple memory card matching game built with React. Test your memory skills by flipping cards and matching pairs. 
+Welcome to Flipper Game! This is a simple memory card matching game built with React. Test your memory skills by flipping cards and matching pairs. 
 
 This README template provides instructions for installation, getting started, and game rules which should give users a clear understanding of how to install, use, and re-use this Flip Card Game project.
 
