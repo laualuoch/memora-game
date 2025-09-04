@@ -1,4 +1,4 @@
-# Flipper Game
+# Memora Game
 
 A simple memory card matching game built with React. Test your memory skills by flipping cards and matching pairs. 
 
@@ -18,17 +18,17 @@ To install and run the Flip Card Game on your machine, follow these steps:
 1. Clone this repository to your local machine using:
 
    ```bash
-   git clone https://github.com/your-username/flip-card-game.git
+   git clone git@github.com:laualuoch/memora-game.git
 
 2. Once cloned navigate to the project directory using the prompt:
    
    ```bash
-    cd flip-card-game
+    cd memora-game
 
 4. Install the required dependencies using the command:
 
    ```bash   
-     npm install
+     npm i
 
   ## Getting Started
 
