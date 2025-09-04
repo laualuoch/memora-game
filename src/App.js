@@ -266,7 +266,7 @@ const FlipCardGame = () => {
      <div className="App">
       <header className='App-header'>
        <h1 className="game-title">
-        Flipper
+        Memora
        </h1>
       </header>
       <div className="App-body container">
