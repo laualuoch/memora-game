@@ -18,7 +18,7 @@ To install and run the Flip Card Game on your machine, follow these steps:
 1. Clone this repository to your local machine using:
 
    ```bash
-   git clone https://github.com/laualuoch/memora-game.git
+   git clone git@github.com:laualuoch/memora-game.git
 
 2. Once cloned navigate to the project directory using the prompt:
    
